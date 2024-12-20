@@ -45,9 +45,13 @@ app.listen(port, () => {
 });
 
 // const uri = 'mongodb+srv://thimusrumak:pLyfafvgHge8WZPn@cluster0.mongodb.net/saffron1db?retryWrites=true&w=majority';
-const uri = "mongodb+srv://thimusrumak:pLyfafvgHge8WZPn@saffroncluster.hkoli.mongodb.net/?retryWrites=true&w=majority&appName=SaffronCluster";
+const uri = "mongodb+srv://thimusrumak:pLyfafvgHge8WZPn@saffroncluster.hkoli.mongodb.net/?retryWrites=true&ssl=true&w=majority&appName=SaffronCluster";
 // mongoose.connect("mongodb://127.0.0.1:27017/version1")
-mongoose.connect(uri)
+mongoose.connect(uri,{
+    useNewUrlParser: true,
+        useUnifiedTopology: true,
+        tls: true // Ensure TLS/SSL is enabled
+})
 .then(()=>{
     console.log("DB connected")
 })
