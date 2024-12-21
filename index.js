@@ -81,6 +81,10 @@ const orderRoute = require("./router/orderRouter");
 
 app.use(`${api}/order`,orderRoute);
 
+
+const customerRoute = require("./router/customerRouter");
+app.use(`${api}/customer`,customerRoute);
+
 app.get('/api/hello', (req, res) => {
     try {
         res.send('Hello World');
