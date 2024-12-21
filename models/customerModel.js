@@ -48,8 +48,8 @@ const customerSchema = new mongoose.Schema({
     image: {
         type: String,
         validate: {
-            validator: function(v) {
-                return v === "" || /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/.test(v);
+            validator: function (v) {
+                return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp))$/i.test(v);
             },
             message: props => `${props.value} is not a valid image URL!`
         },
