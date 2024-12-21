@@ -47,12 +47,6 @@ const customerSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        validate: {
-            validator: function (v) {
-                return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp)|https?:\/\/lh3\.googleusercontent\.com\/.*)$/i.test(v);
-            },
-            message: props => `${props.value} is not a valid image URL!`
-        },
     }
 })
 
