@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const customerData = require("../models/customerModel");
-const sellerUserData = require("../models/sellerUserModel");
 
 
 router.get("/", async (req, res) => {
@@ -9,7 +8,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const sellerUserDataList = new customerData({
+    const customerDataList = new customerData({
         dName:req.body.dName,
         dUser:req.body.dUser,
         dPassword:req.body.dPassword,
@@ -22,7 +21,7 @@ router.post("/", async (req, res) => {
         addSec:req.body.addSec,
         dob:req.body.dob,
     });
-    customerData.save().then((create)=>{
+    customerDataList.save().then((create)=>{
         console.log("created a new user");
         res.status(200).json(create);
     }).catch((error)=>{
