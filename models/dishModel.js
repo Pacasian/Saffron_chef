@@ -37,15 +37,15 @@ const dishModel = new mongoose.Schema({
         type: Number,
         // required: true,
       },
-  image: {
-    type: String,
-    validate: {
-      validator: function(v) {
-        return v === "" || /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/.test(v);
+    image: {
+      type: String,
+      validate: {
+        validator: function(v) {
+          return v === "" || /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg))$/.test(v);
+        },
+        message: props => `${props.value} is not a valid image URL!`
       },
-      message: props => `${props.value} is not a valid image URL!`
     },
-  },
   category: {
         type: String,
         required: true,

@@ -34,7 +34,6 @@ router.post("/", async (req, res) => {
     });
     console.log("New user added")
 
-
 });
 
 router.get("/login", async (req, res) => {
