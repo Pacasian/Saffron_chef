@@ -20,7 +20,7 @@ const offerModel = new mongoose.Schema({
     },
     limit: Number,
     doi: {
-        type: Number,
+        type: Date,
         default: Date.now,
     },
     doe: {

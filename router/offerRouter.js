@@ -96,5 +96,44 @@ router.post("/", async (req, res) => {
 });
 
 
+// --- 3. Update an Offer by ID ---
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedOffer = await offerController.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,           // Return the updated document
+            runValidators: true, // Ensure schema validations are applied
+        });
+
+        if (!updatedOffer) {
+            return res.status(404).json({ message: 'Offer not found' });
+        }
+
+        res.status(200).json({ message: 'Offer updated successfully!', updatedOrder });
+    } catch (error) {
+        res.status(400).json({ message: 'Error updating offer', error: error.message });
+    }
+});
+
+
+// Delete an Offer by ID
+router.delete('/:id', async (req, res) => {
+    try {
+        // Validate if the provided ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Invalid offer ID' });
+        }
+
+        // Attempt to delete the offer by ID
+        const deletedOffer = await offerController.findByIdAndDelete(req.params.id);
+
+        if (!deletedOffer) {
+            return res.status(404).json({ message: 'Offer not found' });
+        }
+
+        res.status(200).json({ message: 'Offer deleted successfully!', deletedOffer });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting offer', error: error.message });
+    }
+});
 
 module.exports = router;
